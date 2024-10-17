@@ -1,6 +1,8 @@
 <?php
 
 use Core\Router;
+use Core\Template;
+use Core\Core;
 
 function autoload($class_name)
 {
@@ -14,5 +16,6 @@ if (isset($_GET['route'])) {
 } else {
     $route = '';
 }
-$router = new core\Router($route);
-$router->run();
+$core = Core::get();
+$core->run($route);
+$core->done();

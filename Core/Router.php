@@ -5,10 +5,13 @@ namespace Core;
 class Router
 {
     protected $route;
+    protected $index_teamplate;
+
     public function __construct($route)
     {
         $this->route = $route;
     }
+
     public function run()
     {
         $parts = explode('/', $this->route);
@@ -19,12 +22,18 @@ class Router
         if (count($parts) == 1) {
             $parts[1] = 'index';
         }
+
+        Core::get()->module_name = $parts[0];
+        Core::get()->action_name = $parts[1];
+
         $controller = 'Controllers\\' . ucfirst($parts[0]) . 'Controller';
         $method = 'action_' . strtolower($parts[1]);
+
         if (class_exists($controller)) {
             $controllerObject = new $controller();
             if (method_exists($controller, $method)) {
-                $controllerObject->$method();
+                array_splice($parts, 0, 2);
+                return $controllerObject->$method($parts);
             } else {
                 $this->error(404);
             }
@@ -32,6 +41,12 @@ class Router
             $this->error(404);
         }
     }
+
+    public function done()
+    {
+        //$this -> index_teamplate -> dispaly();
+    }
+
     public function error($code)
     {
         http_response_code($code);
