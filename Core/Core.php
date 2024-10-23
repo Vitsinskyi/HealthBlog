@@ -29,7 +29,7 @@ class Core
     public static function get()
     {
         if (empty(self::$instance)) {
-            self::$instance = new Core();
+            self::$instance = new self();
         }
         return self::$instance;
     }

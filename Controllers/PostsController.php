@@ -7,7 +7,7 @@ namespace Controllers;
 use Core\Template;
 use Core\Controller;
 
-class PostController extends Controller
+class PostsController extends Controller
 {
     public function action_add()
     {

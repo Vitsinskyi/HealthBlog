@@ -3,6 +3,7 @@
 use Core\Router;
 use Core\Template;
 use Core\Core;
+use Core\Config;
 
 function autoload($class_name)
 {
