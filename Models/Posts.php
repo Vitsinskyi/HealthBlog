@@ -2,26 +2,19 @@
 
 namespace Models;
 
-class Posts
+use Core\Model;
+
+/**
+ * @property int $id ID посту
+ * @property string $title Заголовок посту
+ * @property string $text Текст посту
+ * @property string $short_text Короткий опис посту
+ * @property string $date Дата публікації посту
+ * @property string $author Автор посту
+ * @property string $visibility Видимість посту
+ * @property string $topic Тема посту
+ */
+class Posts extends Model
 {
-    public $id;
-    public $title;
-    public $text;
-    public $short_text;
-    public $date;
-    public $author;
-    public $visibility;
-    public $topic;
-    
-    public function __construct($id, $title, $text, $short_text, $date, $author, $visibility, $topic)
-    {
-        $this->id = $id;
-        $this->title = $title;
-        $this->text = $text;
-        $this->short_text = $short_text;
-        $this->date = $date;
-        $this->author = $author;
-        $this->visibility = $visibility;
-        $this->topic = $topic;
-    }
+    public static $table_name = 'posts';
 }

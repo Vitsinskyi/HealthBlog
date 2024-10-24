@@ -5,6 +5,9 @@
 if (empty($title)) {
     $title = '';
 }
+if (empty($content)) {
+    $content = '';
+}
 ?>
 
 <!doctype html>
