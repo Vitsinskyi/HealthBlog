@@ -68,10 +68,23 @@ class UsersController extends Controller
     {
         return $this->render();
     }
-
     public function action_logout()
     {
         Users::logout_user();
         return $this->redirect('/users/login');
+    }
+    public function action_administration()
+    {
+        if (!Users::is_admin()) {
+            return $this->redirect('/');
+        }
+        if ($this->is_post) {
+            Users::update_user_permision(
+                $this->post->user_id,
+                $this->post->is_admin,
+                $this->post->is_publisher
+            );
+        }
+        return $this->render();
     }
 }

@@ -19,7 +19,7 @@ class DB
     }
     protected function where($where)
     {
-        if (is_array($where)) {
+        if (is_array($where) && !empty($where)) {
             $where_string = 'WHERE ';
             $where_fields = array_keys($where);
             $parts = [];
@@ -50,8 +50,10 @@ class DB
         $where_string = $this->where($where);
         $sql = "SELECT $fields_string FROM $table $where_string";
         $sth = $this->pdo->prepare($sql);
-        foreach ($where as $key => $value) {
-            $sth->bindValue(":$key", $value);
+        if (is_array($where)) {
+            foreach ($where as $key => $value) {
+                $sth->bindValue(":$key", $value);
+            }
         }
         $sth->execute();
         return $sth->fetchAll();

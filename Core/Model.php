@@ -27,6 +27,15 @@ class Model
     {
         Core::get()->db->delete(static::$table_name, $condition_accos_array);
     }
+    public static function find_all()
+    {
+        $arr = Core::get()->db->select(static::$table_name, '*');
+        if (count($arr) > 0) {
+            return $arr;
+        } else {
+            return null;
+        }
+    }
     public static function find_by_id($id)
     {
         $arr = Core::get()->db->select(static::$table_name, '*', [static::$primary_key => $id]);
@@ -48,7 +57,7 @@ class Model
     public function save()
     {
         $is_insert = false;
-        if (!isset($this->{static::$primary_key})) {
+        if ($this->{static::$primary_key} === null) {
             $is_insert = true;
         } else {
             $value = $this->{static::$primary_key};

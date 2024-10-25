@@ -25,8 +25,8 @@ if (empty($content)) {
 </head>
 
 <body>
-    <div class="container">
-        <header class="p-3 mb-3 border-bottom">
+    <div class="d-flex flex-column min-vh-100">
+        <header class="py-3 px-2 mb-3 border-bottom bg-secondary">
             <div class="container">
                 <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
                     <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
@@ -36,24 +36,21 @@ if (empty($content)) {
                     </a>
 
                     <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                        <li><a href="/" class="nav-link px-2 link-secondary">Main page</a></li>
-                        <li><a href="#" class="nav-link px-2 link-body-emphasis">Customers</a></li>
-                        <li><a href="#" class="nav-link px-2 link-body-emphasis">Products</a></li>
+                        <li><a href="/" class="nav-link px-2 link-dark fw-bold fs-5">HealthBlog</a></li>
+                        <li><a href="/posts/index" class="nav-link px-2 link-body-emphasis fs-5">Blog</a></li>
+                        <li><a href="/site/index" class="nav-link px-2 link-body-emphasis fs-5">About us</a></li>
                         <?php if (!Users::is_user_logged()) : ?>
-                            <li><a href="/users/login" class="nav-link px-2 link-body-emphasis">Login</a></li>
-                            <li><a href="/users/register" class="nav-link px-2 link-body-emphasis">Register</a></li>
+                            <li><a href="/users/login" class="nav-link px-2 link-body-emphasis fs-5">Login</a></li>
+                            <li><a href="/users/register" class="nav-link px-2 link-body-emphasis fs-5">Register</a></li>
                         <?php endif; ?>
                     </ul>
 
-                    <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-                        <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
-                    </form>
                     <?php if (Users::is_user_logged()) : ?>
-                        <div class="dropdown text-end">
-                            <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
-                            </a>
-                            <ul class="dropdown-menu text-small">
+                        <div class="dropdown text-end mx-3">
+                            <button class="btn btn-link link-body-emphasis dropdown-toggle px-2 fs-5" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Account
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-dark">
                                 <li><a class="dropdown-item" href="#">New project...</a></li>
                                 <li><a class="dropdown-item" href="#">Settings</a></li>
                                 <li><a class="dropdown-item" href="#">Profile</a></li>
@@ -64,24 +61,35 @@ if (empty($content)) {
                             </ul>
                         </div>
                     <?php endif; ?>
+
+                    <form class="col-12 col-lg-auto mb-3 mb-lg-0" role="search">
+                        <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+                    </form>
                 </div>
             </div>
         </header>
 
-        <div>
-            <?= $content ?>
-        </div>
 
-        <footer class="py-3 my-4">
-            <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Home</a></li>
-                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Features</a></li>
-                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Pricing</a></li>
-                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">FAQs</a></li>
-                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">About</a></li>
-            </ul>
-            <p class="text-center text-body-secondary">© 2024 Company, Inc</p>
+        <main class="p-5 border flex-fill">
+            <div class="container">
+                <?= $content ?>
+            </div>
+        </main>
+
+
+        <footer class="bd-footer py-3 mt-3 bg-secondary">
+            <div class="container">
+                <ul class="nav justify-content-center border-bottom border-dark pb-3 mb-3">
+                    <li class="nav-item"><a href="/" class="nav-link px-2 text-body-secondary">Home</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Features</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Pricing</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">FAQs</a></li>
+                    <li class="nav-item"><a href="/site/index" class="nav-link px-2 text-body-secondary">About</a></li>
+                </ul>
+                <p class="text-center text-body-secondary">© 2024 Company, Inc</p>
+            </div>
         </footer>
+
     </div>
 </body>
 
