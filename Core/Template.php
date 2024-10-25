@@ -6,6 +6,7 @@ class Template
 {
     protected $template_file_path;
     protected $params_array;
+    public Controller $controller;
 
     public function __set($name, $value)
     {
@@ -39,6 +40,7 @@ class Template
     {
         ob_start();
 
+        $this->controller = Core::get()->controller_object;
         extract($this->params_array);
         include($this->template_file_path);
         $str = ob_get_contents();

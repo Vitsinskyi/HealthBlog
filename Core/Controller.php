@@ -5,6 +5,7 @@ namespace Core;
 class Controller
 {
     protected Template $template;
+    protected $error_messages;
     public $is_post = false;
     public $is_get = false;
     public $post;
@@ -25,6 +26,7 @@ class Controller
         }
         $this->post = new Post();
         $this->get = new Get();
+        $this->error_messages = [];
     }
     public function render($path_to_view = null)
     {
@@ -38,6 +40,20 @@ class Controller
     public function redirect($path)
     {
         header("Location: $path");
-        exit;
+        die;
+    }
+    public function add_error_message($message = null)
+    {
+        $this->error_messages[] = $message;
+        $this->template->set_param('error_message', implode('<br/>', $this->error_messages));
+    }
+    public function clear_error_message()
+    {
+        $this->$this->error_messages = [];
+        $this->template->set_param('error_message', null);
+    }
+    public function is_error_message_exist()
+    {
+        return count($this->error_messages) > 0;
     }
 }

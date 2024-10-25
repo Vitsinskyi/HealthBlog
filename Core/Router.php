@@ -30,10 +30,11 @@ class Router
         $method = 'action_' . strtolower($parts[1]);
 
         if (class_exists($controller)) {
-            $controllerObject = new $controller();
+            $controller_object = new $controller();
+            Core::get()->controller_object = $controller_object;
             if (method_exists($controller, $method)) {
                 array_splice($parts, 0, 2);
-                return $controllerObject->$method($parts);
+                return $controller_object->$method($parts);
             } else {
                 $this->error(404);
             }

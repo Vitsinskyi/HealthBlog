@@ -16,7 +16,7 @@ class PostsController extends Controller
 
     public function action_index()
     {
-        return $this->render('views/post/view.php');
+        return $this->render();
     }
 
     public function action_view($params)
