@@ -1,4 +1,6 @@
-<?php ?>
+<?php
+//$this->title = "Помилка"
+?>
 <style>
     .error-container {
         text-align: center;
@@ -37,8 +39,8 @@
     }
 </style>
 <div class="error-container">
-    <h1>404</h1>
-    <h2>Page Not Found</h2>
-    <p>Sorry, the page you are looking for does not exist.</p>
-    <a href="index">Return to Home</a>
+    <h1>403</h1>
+    <h2>Доступ заборонено</h2>
+    <p>Sorry, the page you are looking for does apply.</p>
+    <a href="/">Return to Home</a>
 </div>

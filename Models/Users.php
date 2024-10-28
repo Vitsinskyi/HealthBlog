@@ -56,6 +56,10 @@ class Users extends Model
     {
         Core::get()->session->remove('user');
     }
+    public static function hash_password($password): string
+    {
+        return md5($password);
+    }
     public static function register_user($login, $password, $firstname, $lastname): void
     {
         $user = new Users();

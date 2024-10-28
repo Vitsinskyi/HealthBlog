@@ -4,6 +4,7 @@ namespace Controllers;
 
 use Core\Controller;
 use Models\Category;
+use Models\Users;
 
 class CategoryController extends Controller
 {
@@ -17,6 +18,9 @@ class CategoryController extends Controller
     }
     public function action_add(): array
     {
+        if (!Users::is_admin()) {
+            return $this->redirect('/category/index');
+        }
         if ($this->is_post) {
             $maxSize = 8 * 1024 * 1024;
             $file = $_FILES['file'];

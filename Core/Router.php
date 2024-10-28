@@ -13,7 +13,6 @@ class Router
     {
         $this->route = $route;
     }
-
     public function run()
     {
         $parts = explode('/', $this->route);
@@ -38,30 +37,18 @@ class Router
                 array_splice($parts, 0, 2);
                 return $controller_object->$method($parts);
             } else {
-                $this->error(404);
+                $site_controller = new SiteController;
+                $site_controller->action_error(404);
                 return null;
             }
         } else {
-            $this->error(404);
+            $site_controller = new SiteController;
+            $site_controller->action_error(404);
             return null;
         }
     }
-
     public function done()
     {
         //$this -> index_template -> dispaly();
-    }
-
-    public function error($code): void
-    {
-        http_response_code($code);
-        switch ($code) {
-            case 404:
-                echo 'Page not found';
-                break;
-            case 500:
-                echo 'Page Internal Error';
-                break;
-        }
     }
 }

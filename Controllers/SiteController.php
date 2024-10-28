@@ -13,6 +13,15 @@ class SiteController extends Controller
     }
     public function action_error($code): array
     {
-        return $this->render();
+        switch ($code) {
+            case 404:
+                $this->redirect('/views/site/error404.php');
+                return $this->render('/views/site/error404.php');
+                break;
+            case 403:
+                $this->redirect('/views/site/error403.php');
+                return $this->render('/views/site/error403.php');
+                break;
+        }
     }
 }
