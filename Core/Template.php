@@ -19,24 +19,24 @@ class Template
         $this->params_array = [];
     }
 
-    public function set_template_file_path($path)
+    public function set_template_file_path($path): void
     {
         $this->template_file_path = $path;
     }
 
-    public function set_param($params_name, $params_value)
+    public function set_param($params_name, $params_value): void
     {
         $this->params_array[$params_name] = $params_value;
     }
 
-    public function set_params($params_array)
+    public function set_params($params_array): void
     {
         foreach ($params_array as $key => $value) {
             $this->set_param($key, $value);
         }
     }
 
-    public function get_html()
+    public function get_html(): false|string
     {
         ob_start();
 
@@ -48,7 +48,7 @@ class Template
         return $str;
     }
 
-    public function display()
+    public function display(): void
     {
         echo $this->get_html();
     }

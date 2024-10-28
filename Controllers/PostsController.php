@@ -9,17 +9,17 @@ use Models\Posts;
 
 class PostsController extends Controller
 {
-    public function action_add()
+    public function action_add(): array
     {
         return $this->render();
     }
 
-    public function action_index()
+    public function action_index(): array
     {
         return $this->render();
     }
 
-    public function action_view($params)
+    public function action_view($params): array
     {
         return $this->render();
     }

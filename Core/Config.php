@@ -24,7 +24,7 @@ class Config
             }
         }
     }
-    public static function get()
+    public static function get(): Config
     {
         if (empty(self::$instance)) {
             self::$instance = new self();

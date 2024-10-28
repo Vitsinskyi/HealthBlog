@@ -2,10 +2,12 @@
 
 namespace Core;
 
+use Controllers\SiteController;
+
 class Router
 {
     protected $route;
-    protected $index_teamplate;
+    protected $index_template;
 
     public function __construct($route)
     {
@@ -37,23 +39,29 @@ class Router
                 return $controller_object->$method($parts);
             } else {
                 $this->error(404);
+                return null;
             }
         } else {
             $this->error(404);
+            return null;
         }
     }
 
     public function done()
     {
-        //$this -> index_teamplate -> dispaly();
+        //$this -> index_template -> dispaly();
     }
 
-    public function error($code)
+    public function error($code): void
     {
         http_response_code($code);
         switch ($code) {
             case 404:
                 echo 'Page not found';
+                break;
+            case 500:
+                echo 'Page Internal Error';
+                break;
         }
     }
 }

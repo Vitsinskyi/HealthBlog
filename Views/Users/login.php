@@ -19,7 +19,7 @@ $this->title = "Вхід на сайт";
             <input name="password" type="password" class="form-control" id="inputPassword">
         </div>
         <div class="d-flex justify-content-center"><button type="submit" class="btn btn-primary px-3 mx-3">Submit</button></div>
-        <div class="d-flex justify-content-center m-4 mb-0">Don`t have an accout?</div>
+        <div class="d-flex justify-content-center m-4 mb-0">Don`t have an account?</div>
         <div class="d-flex justify-content-center"> <a class="link-underline-primary" href="/users/register">Register</a></div>
     </form>
 </div>

@@ -31,7 +31,7 @@ $this->title = "Реєстрація користувача";
             <input value="<?= $this->controller->post->firstname ?>" name="firstname" type="text" class="form-control" id="inputFirstname">
         </div>
         <div class="d-flex justify-content-center"><button type="submit" class="btn btn-primary px-3 mx-3">Register</button></div>
-        <div class="d-flex justify-content-center m-4 mb-0">Already have an accout?</div>
+        <div class="d-flex justify-content-center m-4 mb-0">Already have an account?</div>
         <div class="d-flex justify-content-center"> <a class="link-underline-primary" href="/users/login">Login</a></div>
     </form>
 </div>

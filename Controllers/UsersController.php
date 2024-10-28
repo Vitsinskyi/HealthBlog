@@ -8,11 +8,11 @@ use Core\Core;
 
 class UsersController extends Controller
 {
-    public function action_index()
+    public function action_index(): void
     {
         echo 'UsersController -> action_index()';
     }
-    public function action_login()
+    public function action_login(): ?array
     {
         if (Users::is_user_logged()) {
             return $this->redirect('/');
@@ -28,7 +28,7 @@ class UsersController extends Controller
         }
         return $this->render();
     }
-    public function action_register()
+    public function action_register(): ?array
     {
         if ($this->is_post) {
             $user = Users::find_by_login($this->post->login);
@@ -64,22 +64,22 @@ class UsersController extends Controller
         }
         return $this->render();
     }
-    public function action_registersuccess()
+    public function action_registersuccess(): array
     {
         return $this->render();
     }
-    public function action_logout()
+    public function action_logout(): void
     {
         Users::logout_user();
-        return $this->redirect('/users/login');
+        $this->redirect('/users/login');
     }
-    public function action_administration()
+    public function action_administration(): ?array
     {
         if (!Users::is_admin()) {
             return $this->redirect('/');
         }
         if ($this->is_post) {
-            Users::update_user_permision(
+            Users::update_user_permission(
                 $this->post->user_id,
                 $this->post->is_admin,
                 $this->post->is_publisher

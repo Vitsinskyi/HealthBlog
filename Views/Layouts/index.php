@@ -38,7 +38,7 @@ if (empty($content)) {
                     <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                         <li><a href="/" class="nav-link px-2 link-dark fw-bold fs-5">HealthBlog</a></li>
                         <li><a href="/posts/index" class="nav-link px-2 link-body-emphasis fs-5">Blog</a></li>
-                        <li><a href="/site/index" class="nav-link px-2 link-body-emphasis fs-5">About us</a></li>
+                        <li><a href="/category/index" class="nav-link px-2 link-body-emphasis fs-5">Category</a></li>
                         <?php if (!Users::is_user_logged()) : ?>
                             <li><a href="/users/login" class="nav-link px-2 link-body-emphasis fs-5">Login</a></li>
                             <li><a href="/users/register" class="nav-link px-2 link-body-emphasis fs-5">Register</a></li>
@@ -57,6 +57,9 @@ if (empty($content)) {
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
+                                <?php if (Users::is_admin()) : ?>
+                                    <li><a class="dropdown-item" href="/users/administration">Administration</a></li>
+                                <?php endif; ?>
                                 <li><a class="dropdown-item" href="/users/logout">Log out</a></li>
                             </ul>
                         </div>

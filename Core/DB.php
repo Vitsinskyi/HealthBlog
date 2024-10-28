@@ -2,22 +2,24 @@
 
 namespace Core;
 
+use PDO;
+
 class DB
 {
     public $pdo;
     public function __construct($host, $dbname, $login, $password)
     {
-        $this->pdo = new \PDO(
+        $this->pdo = new PDO(
             "mysql:host=$host;dbname=$dbname",
             $login,
             $password,
             [
-                \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,
-                \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC
+                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
             ]
         );
     }
-    protected function where($where)
+    protected function where($where): string
     {
         if (is_array($where) && !empty($where)) {
             $where_string = 'WHERE ';
@@ -36,7 +38,7 @@ class DB
         }
         return $where_string;
     }
-    public function select($table, $fields = '*', $where = null)
+    public function select($table, $fields = '*', $where = null): false|array
     {
         if (is_array($fields)) {
             $fields_string = implode(',', $fields);
@@ -58,7 +60,7 @@ class DB
         $sth->execute();
         return $sth->fetchAll();
     }
-    public function insert($table, $row_to_insert)
+    public function insert($table, $row_to_insert): int
     {
         $fields_list = implode(',', array_keys($row_to_insert));
         $params_array = [];
@@ -74,7 +76,7 @@ class DB
         $sth->execute();
         return $sth->rowCount();
     }
-    public function delete($table, $where)
+    public function delete($table, $where): int
     {
         $where_string = $this->where($where);
         $sql = "DELETE FROM $table $where_string";
@@ -85,7 +87,7 @@ class DB
         $sth->execute();
         return $sth->rowCount();
     }
-    public function update($table, $row_to_update, $where)
+    public function update($table, $row_to_update, $where): int
     {
         $where_string = $this->where($where);
         $set_array = [];

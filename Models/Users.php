@@ -35,7 +35,7 @@ class Users extends Model
             return null;
         }
     }
-    public static function find_all_users()
+    public static function find_all_users(): array
     {
         $rows = self::find_all();
         $users = [];
@@ -44,19 +44,19 @@ class Users extends Model
         }
         return $users;
     }
-    public static function is_user_logged()
+    public static function is_user_logged(): bool
     {
         return !empty(Core::get()->session->get('user'));
     }
-    public static function login_user($user)
+    public static function login_user($user): void
     {
         Core::get()->session->set('user', $user);
     }
-    public static function logout_user()
+    public static function logout_user(): void
     {
         Core::get()->session->remove('user');
     }
-    public static function register_user($login, $password, $firstname, $lastname)
+    public static function register_user($login, $password, $firstname, $lastname): void
     {
         $user = new Users();
         $user->login = $login;
@@ -67,13 +67,13 @@ class Users extends Model
         $user->is_publisher = false;
         $user->save();
     }
-    public static function update_user_permision($id, $admin, $publisher)
+    public static function update_user_permission($id, $admin, $publisher): void
     {
 
         $user_id = $id;
         $is_admin = isset($admin) ? 1 : 0;
         $is_publisher = isset($publisher) ? 1 : 0;
-        $user = self::array_to_object(Users::find_by_id($user_id), self::class);
+        $user = self::array_to_object(self::find_by_id($user_id), self::class);
         if ($user) {
             $user->is_admin = $is_admin;
             $user->is_publisher = $is_publisher;
@@ -82,7 +82,7 @@ class Users extends Model
             echo "Користувача з ID $user_id не знайдено.";
         }
     }
-    public static function is_admin()
+    public static function is_admin(): bool
     {
         $user = Core::get()->session->get('user');
         if (is_array($user)) {
@@ -93,13 +93,5 @@ class Users extends Model
         } else {
             return false;
         }
-    }
-    private static function array_to_object(array $array, string $className)
-    {
-        $object = new $className();
-        foreach ($array as $key => $value) {
-            $object->$key = $value;
-        }
-        return $object;
     }
 }

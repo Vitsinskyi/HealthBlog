@@ -28,7 +28,7 @@ class Controller
         $this->get = new Get();
         $this->error_messages = [];
     }
-    public function render($path_to_view = null)
+    public function render($path_to_view = null): array
     {
         if (!empty($path_to_view)) {
             $this->template->set_template_file_path($path_to_view);
@@ -37,22 +37,22 @@ class Controller
             'content' => $this->template->get_html(),
         ];
     }
-    public function redirect($path)
+    public function redirect($path): void
     {
         header("Location: $path");
         die;
     }
-    public function add_error_message($message = null)
+    public function add_error_message($message = null): void
     {
         $this->error_messages[] = $message;
         $this->template->set_param('error_message', implode('<br/>', $this->error_messages));
     }
-    public function clear_error_message()
+    public function clear_error_message(): void
     {
         $this->$this->error_messages = [];
         $this->template->set_param('error_message', null);
     }
-    public function is_error_message_exist()
+    public function is_error_message_exist(): bool
     {
         return count($this->error_messages) > 0;
     }
