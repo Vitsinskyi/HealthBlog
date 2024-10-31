@@ -98,4 +98,16 @@ class Users extends Model
             return false;
         }
     }
+    public static function is_publisher(): bool
+    {
+        $user = Core::get()->session->get('user');
+        if (is_array($user)) {
+            $user = self::array_to_object($user, self::class);
+        }
+        if ($user instanceof Users && $user->is_publisher == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

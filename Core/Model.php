@@ -36,7 +36,7 @@ class Model
             return null;
         }
     }
-    public static function find_by_id($id): false|array|null
+    public static function find_by_id($id)
     {
         $arr = Core::get()->db->select(static::$table_name, '*', [static::$primary_key => $id]);
         if (count($arr) > 0) {

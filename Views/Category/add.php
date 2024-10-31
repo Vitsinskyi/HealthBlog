@@ -5,21 +5,22 @@ $this->title = "Створення категорії";
 ?>
 <div class="container">
     <form method="post" action="" enctype="multipart/form-data">
+        <div class="form-text text-info text-end">* Обов'язкові поля</div>
         <?php if (!empty($error_massage)) : ?>
             <div class="alert alert-danger" role="alert">
                 <?= $error_massage ?>
             </div>
         <?php endif ?>
         <div class="mb-3">
-            <label for="inputName" class="form-label">Назава категорії</label>
+            <label for="inputName" class="form-label">Назава категорії *</label>
             <input type="text" class="form-control" id="inputName" name="name" placeholder="Назва" required>
         </div>
         <div class="mb-3">
-            <label for="inputDescription" class="form-label">Опис категорії (не обовязково)</label>
+            <label for="inputDescription" class="form-label">Опис категорії</label>
             <textarea class="form-control" id="inputDescription" name="description" rows="3" placeholder="Опис"></textarea>
         </div>
         <div class="mb-3">
-            <label for="formFile" class="form-label">Оберіть файл для категорії</label>
+            <label for="formFile" class="form-label">Оберіть файл для категорії *</label>
             <input class="form-control" type="file" name="file" id="formFile" accept="image/jpeg" required>
             <small id="fileHelp" class="form-text text-muted">Максимальний розмір файлу: 8MB</small>
         </div>
