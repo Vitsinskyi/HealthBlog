@@ -30,8 +30,10 @@ class Posts extends Model
     {
         $rows = self::find_all();
         if (!empty($rows)) {
-            return self::array_to_object($rows, self::class);
-        } else {
+            foreach ($rows as $row) {
+                $category[] = self::array_to_object($row, self::class);
+            }
+            return $category;
             return null;
         }
     }
@@ -67,7 +69,10 @@ class Posts extends Model
     {
         $rows = self::find_by_condition(['category_id' => $category_id]);
         if (!empty($rows)) {
-            return self::array_to_object($rows, self::class);
+            foreach ($rows as $row) {
+                $category[] = self::array_to_object($row, self::class);
+            }
+            return $category;
         } else {
             return null;
         }

@@ -4,6 +4,7 @@ namespace Controllers;
 
 use Core\Controller;
 use Models\Category;
+use Models\Posts;
 use Models\Users;
 
 class CategoryController extends Controller
@@ -12,15 +13,29 @@ class CategoryController extends Controller
     {
         return $this->render();
     }
-    public function action_view($params): array
+
+    public function action_view($params)
     {
+        $id = intval($params[0]);
+        $this->template->set_param('id', $id);
+
+        if (empty(Category::find_category_by_id($id))) {
+            return $this->redirect('/category/index');
+        }
+        if (empty(Posts::find_posts_by_category($id))) {
+            return $this->redirect('/site/error404');
+        }
+
+
         return $this->render();
     }
+
     public function action_add(): array
     {
         if (!Users::is_admin()) {
             return $this->redirect('/category/index');
         }
+
         if ($this->is_post) {
             $maxSize = 8 * 1024 * 1024;
             $file = $_FILES['file'];
@@ -28,7 +43,6 @@ class CategoryController extends Controller
             if (strlen($this->post->name) === 0) {
                 $this->add_error_message('Введіть назву');
             }
-
             if ($file['size'] > $maxSize) {
                 $this->add_error_message('Файл перевищує максимальний розмір у 8MB');
             }
@@ -49,8 +63,10 @@ class CategoryController extends Controller
                 return $this->redirect('/category/index');
             }
         }
+
         return $this->render();
     }
+
     public function action_edit($id)
     {
         $id = intval($id[0]);
@@ -91,8 +107,10 @@ class CategoryController extends Controller
                 return $this->redirect('/category/index');
             }
         }
+
         return $this->render();
     }
+
     public function action_delete($params)
     {
         $id = intval($params[0]);
@@ -121,6 +139,7 @@ class CategoryController extends Controller
 
             return $this->redirect('/category/index');
         }
+
         return $this->render();
     }
 }

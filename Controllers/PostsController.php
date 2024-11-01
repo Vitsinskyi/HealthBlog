@@ -16,9 +16,11 @@ class PostsController extends Controller
     }
     public function action_view($params): array
     {
+        $id = intval($params[0]);
+        $this->template->set_param('id', $id);
         return $this->render();
     }
-    public function action_add(): array
+    public function action_add($params): array
     {
         if (!Users::is_admin()) {
             return $this->redirect('/category/index');
@@ -26,8 +28,12 @@ class PostsController extends Controller
         if (!Users::is_publisher()) {
             return $this->redirect('/category/index');
         }
-        $categories = Category::find_all_categories();
-        $this->template->set_param('categories', $categories);
+        if (!empty($params[0])) {
+            $category_id = intval($params[0]);
+        } else {
+            $category_id = null;
+        }
+        $this->template->set_param('category_id', $category_id);
         $user = Core::get()->session->get('user');
         $user_id = $user->id;
         if ($this->is_post) {
@@ -45,7 +51,7 @@ class PostsController extends Controller
                 $this->add_error_message('Виберіть видимість посту');
             }
 
-            if (!$this->is_error_massage_exist()) {
+            if (!$this->is_error_message_exist()) {
                 Posts::add_post(
                     $this->post->title,
                     $this->post->text,

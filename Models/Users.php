@@ -86,6 +86,19 @@ class Users extends Model
             echo "Користувача з ID $user_id не знайдено.";
         }
     }
+    public static function update_user($id, $login, $password, $firstname, $lastname): void
+    {
+        $user = self::array_to_object(self::find_by_id($id), self::class);
+        if ($user) {
+            $user->login = $login;
+            $user->password = $password;
+            $user->firstname = $firstname;
+            $user->lastname = $lastname;
+            $user->save();
+        } else {
+            echo "Користувача з ID $id не знайдено.";
+        }
+    }
     public static function is_admin(): bool
     {
         $user = Core::get()->session->get('user');

@@ -53,7 +53,7 @@ if (empty($content)) {
                             <ul class="dropdown-menu dropdown-menu-dark">
                                 <li><a class="dropdown-item" href="#">New project...</a></li>
                                 <li><a class="dropdown-item" href="#">Settings</a></li>
-                                <li><a class="dropdown-item" href="#">Profile</a></li>
+                                <li><a class="dropdown-item" href="/users/profile">Profile</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
@@ -84,10 +84,9 @@ if (empty($content)) {
             <div class="container">
                 <ul class="nav justify-content-center border-bottom border-dark pb-3 mb-3">
                     <li class="nav-item"><a href="/" class="nav-link px-2 text-body-secondary">Home</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Features</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Pricing</a></li>
+                    <li class="nav-item"><a href="/category" class="nav-link px-2 text-body-secondary">Category</a></li>
                     <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">FAQs</a></li>
-                    <li class="nav-item"><a href="/site/index" class="nav-link px-2 text-body-secondary">About</a></li>
+                    <li class="nav-item"><a href="/" class="nav-link px-2 text-body-secondary">About</a></li>
                 </ul>
                 <p class="text-center text-body-secondary">© 2024 Company, Inc</p>
             </div>

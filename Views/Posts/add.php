@@ -2,9 +2,13 @@
 
 /** 
  * @var string $error_massage Повідомлення про помилку 
- * @var array $categories Масив категорій
+ * @var int/null $category_id ID категорії
  * */
 
+use Models\Category;
+
+
+$categories = Category::find_all_categories();
 $this->title = "Додавання посту до блогу";
 ?>
 <style>
@@ -28,7 +32,7 @@ $this->title = "Додавання посту до блогу";
             <label for="category_id" class="input-group-text">Оберіть категорію посту</label>
             <select class="form-select" id="category_id" name="category_id" placeholder="Категорія" required>
                 <?php foreach ($categories as $category) : ?>
-                    <option value="<?= $category->id ?>"><?= $category->name ?></option>
+                    <option <?php if ($category->id == $category_id) echo 'selected'; ?> value="<?= $category->id ?>"><?= $category->name ?></option>
                 <?php endforeach; ?>
             </select>
         </div>
