@@ -1,7 +1,7 @@
 <?php
 
-/** @var string $error_massage Повідомлення про помилку */
-$this->title = "Редагування категорії";
+/** @var string $error_message Повідомлення про помилку */
+$this->title = "Видалення категорії";
 
 use Models\Category;
 

@@ -36,12 +36,12 @@ if (empty($content)) {
                     </a>
 
                     <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                        <li><a href="/" class="nav-link px-2 link-dark fw-bold fs-5">HealthBlog</a></li>
-                        <li><a href="/posts/index" class="nav-link px-2 link-body-emphasis fs-5">Blog</a></li>
-                        <li><a href="/category/index" class="nav-link px-2 link-body-emphasis fs-5">Category</a></li>
+                        <li><a href="/" class="nav-link px-2 link-dark fw-bold fs-5">Health Blog</a></li>
+                        <li><a href="/posts/index" class="nav-link px-2 link-body-emphasis fs-5">Блог</a></li>
+                        <li><a href="/category/index" class="nav-link px-2 link-body-emphasis fs-5">Категорії</a></li>
                         <?php if (!Users::is_user_logged()) : ?>
-                            <li><a href="/users/login" class="nav-link px-2 link-body-emphasis fs-5">Login</a></li>
-                            <li><a href="/users/register" class="nav-link px-2 link-body-emphasis fs-5">Register</a></li>
+                            <li><a href="/users/login" class="nav-link px-2 link-body-emphasis fs-5">Увійти</a></li>
+                            <li><a href="/users/register" class="nav-link px-2 link-body-emphasis fs-5">Зареєструватися</a></li>
                         <?php endif; ?>
                     </ul>
 
@@ -51,16 +51,18 @@ if (empty($content)) {
                                 Account
                             </button>
                             <ul class="dropdown-menu dropdown-menu-dark">
-                                <li><a class="dropdown-item" href="#">New project...</a></li>
-                                <li><a class="dropdown-item" href="#">Settings</a></li>
-                                <li><a class="dropdown-item" href="/users/profile">Profile</a></li>
+                                <?php if (Users::is_admin() || Users::is_publisher()) : ?>
+                                    <li><a class="dropdown-item" href="/posts/add">Новий пост...</a></li>
+                                    <li><a class="dropdown-item" href="/category/add">Нова категорія...</a></li>
+                                <?php endif; ?>
+                                <li><a class="dropdown-item" href="/users/profile">Особистий профіль</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
                                 <?php if (Users::is_admin()) : ?>
-                                    <li><a class="dropdown-item" href="/users/administration">Administration</a></li>
+                                    <li><a class="dropdown-item" href="/users/administration">Адміністрування</a></li>
                                 <?php endif; ?>
-                                <li><a class="dropdown-item" href="/users/logout">Log out</a></li>
+                                <li><a class="dropdown-item" href="/users/logout">Вийти</a></li>
                             </ul>
                         </div>
                     <?php endif; ?>
@@ -73,7 +75,7 @@ if (empty($content)) {
         </header>
 
 
-        <main class="p-5 border flex-fill">
+        <main class="p-4 border flex-fill">
             <div class="container">
                 <?= $content ?>
             </div>
@@ -83,12 +85,12 @@ if (empty($content)) {
         <footer class="bd-footer py-3 mt-3 bg-secondary">
             <div class="container">
                 <ul class="nav justify-content-center border-bottom border-dark pb-3 mb-3">
-                    <li class="nav-item"><a href="/" class="nav-link px-2 text-body-secondary">Home</a></li>
-                    <li class="nav-item"><a href="/category" class="nav-link px-2 text-body-secondary">Category</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">FAQs</a></li>
-                    <li class="nav-item"><a href="/" class="nav-link px-2 text-body-secondary">About</a></li>
+                    <li class="nav-item"><a href="/" class="nav-link px-2 text-body-secondary">На головну</a></li>
+                    <li class="nav-item"><a href="/category" class="nav-link px-2 text-body-secondary">Категорії</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">ЧаПи</a></li>
+                    <li class="nav-item"><a href="/" class="nav-link px-2 text-body-secondary">Про нас</a></li>
                 </ul>
-                <p class="text-center text-body-secondary">© 2024 Company, Inc</p>
+                <p class="text-center text-body-secondary">© 2024 Health Blog, Inc</p>
             </div>
         </footer>
 

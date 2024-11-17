@@ -65,6 +65,7 @@ class Model
                 $is_insert = true;
             }
         }
+
         if ($is_insert) {
             Core::get()->db->insert(static::$table_name, $this->fields_array);
         } else {

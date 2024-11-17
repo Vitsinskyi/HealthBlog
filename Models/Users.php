@@ -67,8 +67,8 @@ class Users extends Model
         $user->password = $password;
         $user->firstname = $firstname;
         $user->lastname = $lastname;
-        $user->is_admin = false;
-        $user->is_publisher = false;
+        $user->is_admin = 0;
+        $user->is_publisher = 0;
         $user->save();
     }
     public static function update_user_permission($id, $admin, $publisher): void
@@ -77,6 +77,7 @@ class Users extends Model
         $user_id = $id;
         $is_admin = isset($admin) ? 1 : 0;
         $is_publisher = isset($publisher) ? 1 : 0;
+
         $user = self::array_to_object(self::find_by_id($user_id), self::class);
         if ($user) {
             $user->is_admin = $is_admin;

@@ -2,7 +2,6 @@
 
 namespace Controllers;
 
-use Core\Template;
 use Core\Controller;
 
 class SiteController extends Controller
@@ -11,6 +10,7 @@ class SiteController extends Controller
     {
         return $this->render();
     }
+
     public function action_error($code): array
     {
         switch ($code) {

@@ -2,7 +2,6 @@
 
 namespace Models;
 
-use Core\Core;
 use Core\Model;
 
 /**
@@ -18,7 +17,7 @@ class Category extends Model
     {
         do {
             $photo_name = uniqid() . '.jpg';
-            $path = 'Uploads\\Category\\' . $photo_name;
+            $path = 'Uploads/Category/' . $photo_name;
         } while (file_exists($path));
         move_uploaded_file($photo, $path);
         return $photo_name;
@@ -26,13 +25,11 @@ class Category extends Model
     public static function change_photo($id, $new_photo)
     {
         $category = self::find_by_id($id);
-        $photo_path = 'Uploads\\Category\\' . $category['photo'];
+        $photo_path = 'Uploads/Category/' . $category['photo'];
         if (is_file($photo_path)) {
             unlink($photo_path);
-        }
-
-        $photo_name = self::photo_path($new_photo);
-        return $photo_name;
+        } 
+        return self::photo_path($new_photo);
     }
     public static function add_category($name, $photo, $description = null)
     {
@@ -56,24 +53,27 @@ class Category extends Model
     public static function find_all_categories()
     {
         $rows = self::find_all();
-        $category = [];
-        foreach ($rows as $row) {
-            $category[] = self::array_to_object($row, self::class);
+        if (!empty($rows)) {
+            foreach ($rows as $row) {
+                $categories[] = self::array_to_object($row, self::class);
+            }
+            return $categories;
+        } else {
+            return [];
         }
-        return $category;
     }
     public static function delete_category($id)
     {
         self::delete_by_id($id);
     }
-    public static function update_category($id, $name, $photo = null, $description = null)
+    public static function update_category($id, $name, $description = null, $photo = null): void
     {
         $category = self::find_category_by_id($id);
         $category->name = $name;
+        $category->description = $description;
         if (!empty($photo)) {
             $category->photo = self::change_photo($id, $photo);
         }
-        $category->description = $description;
         $category->save();
     }
 }

@@ -1,18 +1,18 @@
 <?php
 
-/** @var string $error_massage Повідомлення про помилку */
+/** @var string $error_message Повідомлення про помилку */
 $this->title = "Реєстрація користувача";
 ?>
 <div class="container">
     <form method="post" action="">
         <div class="form-text text-info text-end">* Обов'язкові поля</div>
-        <?php if (!empty($error_massage)) : ?>
+        <?php if (!empty($error_message)) : ?>
             <div class="alert alert-danger" role="alert">
-                <?= $error_massage ?>
+                <?= $error_message ?>
             </div>
         <?php endif ?>
         <div class="mb-3">
-            <label for="inputEmail" class="form-label">Логін / Пошта *</label>
+            <label for="inputEmail" class="form-label">Електронна пошта *</label>
             <input value="<?= $this->controller->post->login ?>" name="login" type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp">
         </div>
         <div class="mb-3">
@@ -31,8 +31,8 @@ $this->title = "Реєстрація користувача";
             <label for="inputFirstname" class="form-label">Ім'я *</label>
             <input value="<?= $this->controller->post->firstname ?>" name="firstname" type="text" class="form-control" id="inputFirstname">
         </div>
-        <div class="d-flex justify-content-center"><button type="submit" class="btn btn-primary px-3 mx-3">Register</button></div>
-        <div class="d-flex justify-content-center m-4 mb-0">Already have an account?</div>
-        <div class="d-flex justify-content-center"> <a class="link-underline-primary" href="/users/login">Login</a></div>
+        <div class="d-flex justify-content-center"><button type="submit" class="btn btn-secondary px-3 mx-3">Зареєструватися</button></div>
+        <div class="d-flex justify-content-center m-4 mb-0">Вже маєте аккаунт?</div>
+        <div class="d-flex justify-content-center"> <a class="link-underline-primary" href="/users/login">Увійти</a></div>
     </form>
 </div>

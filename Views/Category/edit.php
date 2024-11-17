@@ -1,6 +1,6 @@
 <?php
 
-/** @var string $error_massage Повідомлення про помилку */
+/** @var string $error_message Повідомлення про помилку */
 $this->title = "Редагування категорії";
 
 use Models\Category;
@@ -9,9 +9,9 @@ $category = Category::find_category_by_id($id);
 ?>
 <div class="container">
     <form method="post" action="" enctype="multipart/form-data">
-        <?php if (!empty($error_massage)) : ?>
+        <?php if (!empty($error_message)) : ?>
             <div class="alert alert-danger" role="alert">
-                <?= $error_massage ?>
+                <?= $error_message ?>
             </div>
         <?php endif ?>
         <div class="mb-3">
@@ -37,6 +37,6 @@ $category = Category::find_category_by_id($id);
             <input class="form-control" type="file" name="file" id="formFile" accept="image/jpeg">
             <small id="fileHelp" class="form-text text-muted">Максимальний розмір файлу: 8MB</small>
         </div>
-        <div class="d-flex justify-content-center"><button type="submit" class="btn btn-primary px-3 mx-3">Зберегти</button></div>
+        <div class="d-flex justify-content-center"><button type="submit" class="btn btn-secondary px-3 mx-3">Зберегти</button></div>
     </form>
 </div>

@@ -41,6 +41,6 @@
 <div class="error-container">
     <h1>403</h1>
     <h2>Доступ заборонено</h2>
-    <p>Sorry, the page you are looking for does apply.</p>
-    <a href="/">Return to Home</a>
+    <p>Вибачте, сторінка яку ви шукаєте недоступна для вас.</p>
+    <a href="/">На головну</a>
 </div>

@@ -5,7 +5,7 @@ $this->title = 'Головна сторінка';
 <div class="container">
     <div class="row">
         <div class="col-md-6">
-            <img src="/uploads/main/index.jpg" alt="Health Blog" class="img-fluid">
+            <img src="/Uploads/Main/index.jpg" alt="Health Blog" class="img-fluid">
         </div>
         <div class="col-md-6">
             <h1>Health Blog - Ваш блог про здоров'я</h1>
